@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "CRUD-Gal-Client"
+  "defaultProject": "CRUD-Gal-Client",
+  "cli": {
+    "analytics": false
+  }
 }

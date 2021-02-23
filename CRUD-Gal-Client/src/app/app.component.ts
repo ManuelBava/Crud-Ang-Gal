@@ -12,6 +12,5 @@ export class AppComponent implements Automabile {
 
   modifica() {
     this.automa.next(new ModificaEvent());
-
   }
 }

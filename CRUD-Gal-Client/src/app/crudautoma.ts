@@ -1,7 +1,12 @@
-import { AddEvent, AnnullaEvent, Automabile, ConfermaEvent, ModificaEvent, RicercaEvent, SelezionaEvent, State } from "./state";
+import { AddEvent, AnnullaEvent, Automabile, ConfermaEvent, Event, ModificaEvent, RicercaEvent, SelezionaEvent, State } from "./state";
 
 export class CrudAutoma implements State {
     stato: State;
+    ui: Automabile;
+    constructor(ui: Automabile) {
+        this.ui = ui;
+    }
+
 
     next(e: Event) {
         this.stato.next(e);

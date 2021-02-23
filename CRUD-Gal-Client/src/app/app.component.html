@@ -1,20 +1,23 @@
 CRUD-Gal
-Codice prodotto<input type="text" [(ngModel)]="codice">
-Descrizione prodotto <input type="text" [(ngModel)]="descrizione">
-<button (click)="nuova()">Nuova</button>
+<br>
+<button *ngIf="showNew" (click)="nuova()">Nuova</button>
 <br>
 <br>
-<button (click)="modifica()">Modifica</button>
-<button (click)="conferma()">Conferma</button>
-<button (click)="annulla()">Annulla</button>
-<button (click)="rimuovi()">Rimuovi</button>
+<div *ngIf="showFormDati">
+    Codice prodotto<input type="text" [(ngModel)]="codice">
+    Descrizione prodotto <input type="text" [(ngModel)]="descrizione">
+    <button *ngIf="showModifica" (click)="modifica()">Modifica</button>
+    <button *ngIf="showConferma" (click)="conferma()">Conferma</button>
+    <button *ngIf="showAnnulla" (click)="annulla()">Annulla</button>
+    <button *ngIf="showRimuovi" (click)="rimuovi()">Rimuovi</button>
+</div>
 <br>
 <br>
 <input type="text" [(ngModel)]="cercaPerCodice">
-<button (click)="cerca()">Cerca</button>
+<button *ngIf="showSearch" (click)="cerca()">Cerca</button>
 <br>
 <br>
 <table id="bordi">
-<tr>
-</tr>
+    <tr>
+    </tr>
 </table>

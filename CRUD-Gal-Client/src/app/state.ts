@@ -36,5 +36,5 @@ export class SelezionaEvent implements Event{
 }
 
 export interface Automabile {
-
+//
 }

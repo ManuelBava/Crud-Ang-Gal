@@ -4,8 +4,8 @@ CRUD-Gal
 <br>
 <br>
 <div *ngIf="showFormDati">
-    Codice prodotto<input type="text" [(ngModel)]="codice">
-    Descrizione prodotto <input type="text" [(ngModel)]="descrizione">
+    Codice prodotto<input type="text" [(ngModel)]="codice" [disabled] = "disableInputs">
+    Descrizione prodotto <input type="text" [(ngModel)]="descrizione" [disabled] = "disableInputs">
     <button *ngIf="showModifica" (click)="modifica()">Modifica</button>
     <button *ngIf="showConferma" (click)="conferma()">Conferma</button>
     <button *ngIf="showAnnulla" (click)="annulla()">Annulla</button>

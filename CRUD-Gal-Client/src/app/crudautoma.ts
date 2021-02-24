@@ -8,8 +8,8 @@ export class CrudAutoma implements State {
     }
 
 
-    next(e: Event) {
-        this.stato.next(e);
+    next(e: Event, a?: CrudAutoma) {
+        this.stato.next(e,a);
     }
 }
 

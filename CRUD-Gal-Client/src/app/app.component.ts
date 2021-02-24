@@ -10,6 +10,9 @@ import { AddEvent, AnnullaEvent, Automabile, ConfermaEvent, ModificaEvent, Ricer
 export class AppComponent implements Automabile {
   automa: CrudAutoma = new CrudAutoma(this);
 
+  codice: string;
+  descrizione: string;
+  cercaPerCodice: string;
   showNew: boolean = true;
   showFormDati: boolean = false;
   showModifica: boolean = false;
@@ -18,21 +21,33 @@ export class AppComponent implements Automabile {
   showRimuovi: boolean = false;
   showSearch: boolean = true;
   showTable: boolean = false;
+  disableInputs: boolean = false;
 
-  nuova() {
+
+  entraStatoRicerca() {
+    this.showNew = true;
+    this.showFormDati = false;
+    this.showModifica = false;
+    this.showConferma = false;
+    this.showAnnulla = false;
+    this.showRimuovi = false;
+    this.showSearch = true;
+    this.showTable = true;
+  }
+
+  entraStatoRimuovi() {
     this.showNew = false;
     this.showFormDati = true;
-    this.showModifica = true;
+    this.showModifica = false;
     this.showConferma = true;
     this.showAnnulla = true;
     this.showRimuovi = false;
     this.showSearch = false;
-    this.showTable = false; 
-    this.automa.next(new AddEvent());
-      
+    this.showTable = false;
+    this.disableInputs = false;
   }
 
-  modifica() {
+  entraStatoModifica() {
     this.showNew = false;
     this.showFormDati = true;
     this.showModifica = true;
@@ -40,55 +55,58 @@ export class AppComponent implements Automabile {
     this.showAnnulla = true;
     this.showRimuovi = true;
     this.showSearch = false;
-    this.showTable = false; 
+    this.showTable = false;
+    this.disableInputs = true;
+  }
+
+  entraStatoVisualizza() {
+    this.showNew = true;
+    this.showFormDati = true;
+    this.showModifica = true;
+    this.showConferma = true;
+    this.showAnnulla = true;
+    this.showRimuovi = true;
+    this.showSearch = true;
+    this.showTable = true;
+    this.disableInputs = false;
+  }
+
+  entraStatoAggiungi() {
+    this.showNew = false;
+    this.showFormDati = true;
+    this.showModifica = true;
+    this.showConferma = true;
+    this.showAnnulla = true;
+    this.showRimuovi = true;
+    this.showSearch = false;
+    this.showTable = false;
+    this.disableInputs = true;
+    this.codice = "";
+    this.descrizione = "";
+  }
+
+  nuova() {
+    this.automa.next(new AddEvent());
+  }
+
+  modifica() {
+ 
     this.automa.next(new ModificaEvent());
   }
 
   conferma() {
-    this.showNew = true;
-    this.showFormDati = true;
-    this.showModifica = true;
-    this.showConferma = false;
-    this.showAnnulla = false;
-    this.showRimuovi = true;
-    this.showSearch = true;
-    this.showTable = true; 
     this.automa.next(new ConfermaEvent());
   }
 
   annulla() {
-    this.showNew = true;
-    this.showFormDati = true;
-    this.showModifica = true;
-    this.showConferma = false;
-    this.showAnnulla = false;
-    this.showRimuovi = true;
-    this.showSearch = true;
-    this.showTable = true; 
-    this.automa.next(new AnnullaEvent());
+    this.automa.next(new AnnullaEvent(), this.automa);
   }
 
   rimuovi() {
-    this.showNew = false;
-    this.showFormDati = true;
-    this.showModifica = true;
-    this.showConferma = true;
-    this.showAnnulla = true;
-    this.showRimuovi = true;
-    this.showSearch = false;
-    this.showTable = true; 
-    this.automa.next(new RimuoviEvent());
+    this.automa.next(new RimuoviEvent(), this.automa);
   }
 
   cerca() {
-    this.showNew = true;
-    this.showFormDati = false;
-    this.showModifica = true;
-    this.showConferma = false;
-    this.showAnnulla = false;
-    this.showRimuovi = true;
-    this.showSearch = true;
-    this.showTable = true; 
-    this.automa.next(new RicercaEvent());
+    this.automa.next(new RicercaEvent(), this.automa);
   }
 }
